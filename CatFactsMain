@@ -1,0 +1,49 @@
+-
+-Dim derpbook As Object, herpbook As Workbook
+-
+-Set derpbook = Application.CreateObject("Excel.Application")
+-Set herpbook = derpbook.Workbooks.Open("LOCATION OR CAT FACTS FILE!")
+-derpbook.Application.Visible = False
+-
+-i = derpbook.WorksheetFunction.RandBetween(1, 32)
+-
+-catfacts = herpbook.Worksheets(1).Range("A" & (i * 2) - 1).Text
+-
+-herpbook.Close False
+-Set derpbook = Nothing
+-Set herpbook = Nothing
+-End Function
+-
+-Sub sl()
+-
+- For i = 0 To 2
+-    somestring = catfacts()
+-
+- 
+-   Dim olApp As Outlook.Application
+-   Dim objMail As Outlook.MailItem
+-   Dim OutlookApplication As Outlook.Application
+-   Dim OutlookNamespace As Outlook.NameSpace
+-   Dim Mail As Object
+-   Dim SafeItem As Object
+-   Dim Item As Object
+-   
+-   Set OutlookApplication = CreateObject("Outlook.Application")
+-   Set OutlookNamespace = OutlookApplication.GetNamespace("MAPI")
+-   Set Mail = OutlookApplication.CreateItem(0)
+-
+-
+-    Set olApp = Outlook.Application
+-    Set objMail = olApp.CreateItem(olMailItem)
+-    objMail.SendUsingAccount = OutlookNamespace.Accounts("dailycatfactssubscription@gmail.com")  '''CREATE YOUR OWN SPAMMING EMAIL BRAH!
+-    objMail.BodyFormat = olFormatPlain
+-    objMail.Subject = "Daily Cat Facts"
+-    objMail.Body = "Hello PERSON'S NAME HERE here is your daily CAT FACTS >0<!" & Chr(13) & Chr(10) & Chr(13) & Chr(10) & _
+-        somestring & Chr(13) & Chr(10) & Chr(13) & Chr(10) & _
+-        "<To cancel Daily Cat Facts, reply 'cancel'>"
+-    objMail.To = "PHONE NUMBER OR EMAIL"  '''9518052582@vtext.com example
+-    objMail.Send
+-i = i + 1
+-Next
+-
+-End Sub
